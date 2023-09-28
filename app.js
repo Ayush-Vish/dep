@@ -26,16 +26,16 @@ connectToDB()
 // }))
 // app.use(cors())
 
-app.use('/ping', (req, res ,next ) => {
-    res.send("Welccome to Blog webssoite")
-    next()
+app.use('/ping/', (req, res  ) => {
+    res.status(200).json({message : "Welccome to Blog webssoite"})
+
 }) 
 // import userRoutes from './routes/user.route.js'
 // app.use('/api/v1/user/', userRoutes);
 
 
-// import blogRoute from "./routes/blogs.routes.js"
-// app.use("/api/v1/blogs/", blogRoute)
+import blogRoute from "./routes/blogs.routes.js"
+app.use("/api/v1/blogs/", blogRoute)
 // Making error middleware 
 // We are making this Middleware if any error is there Erroe Middleware will capture this 
 // This middleware is for All errors 
