@@ -42,6 +42,6 @@ app.use('/ping/', (req, res  ) => {
 // If there is Some Problem in the userRoutes section  then we have come to this errorMiddleware 
 // app.use(errorMiddleware)
 app.all('*' , (req,res) =>{
-    res.status(404).send("OOPS !! 404 Page Not Found");
+    res.status(404).json({"Message" : "OOPS !! 404 Page Not Found"});
 })
 export default app
