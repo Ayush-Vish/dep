@@ -34,8 +34,8 @@ app.use('/ping/', (req, res  ) => {
 // app.use('/api/v1/user/', userRoutes);
 
 
-import blogRoute from "./routes/blogs.routes.js"
-app.use("/api/v1/blogs/", blogRoute)
+// import blogRoute from "./routes/blogs.routes.js"
+// app.use("/api/v1/blogs/", blogRoute)
 // Making error middleware 
 // We are making this Middleware if any error is there Erroe Middleware will capture this 
 // This middleware is for All errors 
