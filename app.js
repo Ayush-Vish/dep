@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(cors())
 
-app.use('/', (req, res) => {
+app.use('/ping', (req, res) => {
     res.send("Welccome to Blog webssoite")
 }) 
 import userRoutes from './routes/user.route.js'
