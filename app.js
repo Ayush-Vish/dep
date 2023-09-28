@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 // import morgan from 'morgan'
 // import bodyParser from 'body-parser'
 
-// import errorMiddleware from './middlewares/error.middleware.js'
+import errorMiddleware from './middlewares/error.middleware.js'
 const app = express()
 dotenv.config()
 // app.use(morgan('dev'))
@@ -30,8 +30,8 @@ app.use('/ping/', (req, res  ) => {
     res.status(200).json({message : "Welccome to Blog webssoite"})
 
 }) 
-// import userRoutes from './routes/user.route.js'
-// app.use('/api/v1/user/', userRoutes);
+import userRoutes from './routes/user.route.js'
+app.use('/api/v1/user/', userRoutes);
 
 
 // import blogRoute from "./routes/blogs.routes.js"
@@ -40,7 +40,7 @@ app.use('/ping/', (req, res  ) => {
 // We are making this Middleware if any error is there Erroe Middleware will capture this 
 // This middleware is for All errors 
 // If there is Some Problem in the userRoutes section  then we have come to this errorMiddleware 
-// app.use(errorMiddleware)
+app.use(errorMiddleware)
 app.all('*' , (req,res) =>{
     res.status(404).json({"Message" : "OOPS !! 404 Page Not Found"});
 })
