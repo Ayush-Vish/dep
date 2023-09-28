@@ -3,6 +3,12 @@ const router = express.Router()
 import upload from "../middlewares/multer.middleware.js"
 import user from "../controllers/user.controller.js"
 import isLoggedIn from "../middlewares/authenticate.middleware.js"
+router.route("/").get((req, res, next )=>{
+        return res.status(200).json({
+                message : "At User Routes "
+        })
+        
+})
 router.route('/register')
         .post(upload.single("avatar"), user.register)
 router.route("/login")
