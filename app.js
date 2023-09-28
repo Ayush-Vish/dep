@@ -26,8 +26,9 @@ connectToDB()
 // }))
 // app.use(cors())
 
-app.use('/ping', (req, res) => {
+app.use('/ping', (req, res ,next ) => {
     res.send("Welccome to Blog webssoite")
+    next()
 }) 
 // import userRoutes from './routes/user.route.js'
 // app.use('/api/v1/user/', userRoutes);
@@ -40,7 +41,7 @@ app.use('/ping', (req, res) => {
 // This middleware is for All errors 
 // If there is Some Problem in the userRoutes section  then we have come to this errorMiddleware 
 // app.use(errorMiddleware)
-// app.all('*' , (req,res) =>{
-//     res.status(404).send("OOPS !! 404 Page Not Found");
-// })
+app.all('*' , (req,res) =>{
+    res.status(404).send("OOPS !! 404 Page Not Found");
+})
 export default app
