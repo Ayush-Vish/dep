@@ -45,7 +45,7 @@ const createBlog =async (req, res ,next) => {
 
 
         if(req.file)  {
-            console.log(`uploads/${req.file.filename}`)
+            
             try { 
                 const result = await cloudinary.v2.uploader.upload(req.file.path,  { 
                     folder : "Blog-Thumbnail", 

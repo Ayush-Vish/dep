@@ -27,7 +27,12 @@ connectToDB()
 app.use(bodyParser.urlencoded({
     extended:  false 
 }))
-app.use(cors())
+
+
+
+app.use(cors({
+    credentials : true
+}))
 
 app.use('/ping/', (req, res  ) => {
     res.status(200).json({message : "Welccome to Blog webssoite"})

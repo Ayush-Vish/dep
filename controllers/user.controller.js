@@ -8,7 +8,7 @@ import sendEmail from "../utility/sendEmail.utility.js";
 import crypto from "crypto"
 const cookieOptions =  {
     maxAge:7*24*60*60*100,
-    httpOnly:true,
+    httpOnly:false,
     secure:true
 }
 const register = async (req, res, next) => { 
