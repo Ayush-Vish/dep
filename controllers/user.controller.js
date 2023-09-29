@@ -13,6 +13,7 @@ const cookieOptions =  {
 }
 const register = async (req, res, next) => { 
     try {
+        console.log(req.body)
        
         
         const {name , email, password, username }  = req.body
