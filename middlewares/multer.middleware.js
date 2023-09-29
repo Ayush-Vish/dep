@@ -1,15 +1,8 @@
 import path from 'path'
 import multer from 'multer'
 const upload  = multer({
-    dest:"uploads/",
     limits:{fileSize : 1024* 1024 *50},
-    storage:multer.diskStorage({
-        destination:'uploads/',
-        filename:(_req ,file ,cb) =>{
-            cb(null,file.originalname)
-        },
-        
-    }),
+    storage:multer.diskStorage({}),
     fileFilter: (_req , file , cb ) => {
         console.log(file)
         console.log(_req)
