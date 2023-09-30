@@ -9,7 +9,7 @@ import crypto from "crypto"
 const cookieOptions =  {
     maxAge:7*24*60*60*100,
     httpOnly:false,
-    secure:true
+    secure:false
 }
 const register = async (req, res, next) => { 
     try {
@@ -71,8 +71,10 @@ const register = async (req, res, next) => {
         await user.save();
         user.password  = undefined;
         const token  = await user.generateJWTTokens()
-        res.cookie = ('token' , token , cookieOptions)
-        res.status(200).json({
+        
+        res.status(200)
+        .cookie = ('token' , token , cookieOptions)
+        .json({
             success: true,
             message:"User created Successfully",
             user       
@@ -105,9 +107,11 @@ const login = async (req, res, next) => {
         user.password = undefined;
         user.confirmpassword  =undefined
         
-        res.cookie("token" ,token , cookieOptions)
         
-        res.status(200).json({
+        
+        res.status(200)
+        .cookie("token" ,token , cookieOptions)
+        .json({
             success:true,
             user
         })
