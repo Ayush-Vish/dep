@@ -113,7 +113,8 @@ const login = async (req, res, next) => {
         .cookie("token" ,token , cookieOptions)
         .json({
             success:true,
-            user
+            user , 
+            token
         })
         
     } catch (error) {
