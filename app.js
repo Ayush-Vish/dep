@@ -10,6 +10,15 @@ import errorMiddleware from './middlewares/error.middleware.js'
 const app = express()
 dotenv.config()
 app.use(morgan('dev'))
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Set-Cookie');
+
+    // Other CORS headers and middleware settings
+    // ...
+    next();
+  });
+
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
 app.use(urlencoded({
@@ -31,7 +40,8 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(cors({
-    credentials : true
+    credentials : true,  
+    
 }))
 
 app.use('/ping/', (req, res  ) => {
