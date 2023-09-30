@@ -12,10 +12,9 @@ dotenv.config()
 app.use(morgan('dev'))
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
-    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Set-Cookie');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Set-Cookie');
 
-    // Other CORS headers and middleware settings
-    // ...
+    
     next();
   });
 
