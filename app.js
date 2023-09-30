@@ -12,7 +12,7 @@ dotenv.config()
 app.use(morgan('dev'))
 app.use((req, res, next) => {
     console.log(req.headers) 
-    console.log(req.cookies)
+    console.log(req.cookie)
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Credentials', true);
@@ -43,10 +43,7 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.use(cors({
-    credentials : true,  
-    
-}))
+app.use(cors())
 
 app.use('/ping/', (req, res  ) => {
     res.status(200).json({message : "Welccome to Blog webssoite"})
