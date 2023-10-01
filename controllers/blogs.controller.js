@@ -22,14 +22,7 @@ const getAllblogs =async (req, res ,next) => {
 
 const createBlog =async (req, res ,next) => { 
     try {
-       
-        
-
-
         const {title ,description , category } = req.body 
-        
-
-
         const authorId= req.user.id 
         const author= await userModel.findById(authorId) 
         if(!author)  {
