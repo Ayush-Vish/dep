@@ -21,6 +21,7 @@ app.use((req, res, next) => {
     next();
   });
 app.use(express.static("client"))
+app.set('views', path.join(__dirname, 'views'))
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
 app.use(urlencoded({
@@ -46,8 +47,8 @@ app.use(cors({
     origin:"http://127.0.0.1:5500"
 }))
 
-app.use('/ping/', (req, res  ) => {
-    res.status(200).json({message : "Welccome to Blog webssoite"})
+app.get('/', (req, res  ) => {
+    res.render("./client/index.js")
 
 }) 
 import userRoutes from './routes/user.route.js'
