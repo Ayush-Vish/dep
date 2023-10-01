@@ -10,7 +10,7 @@ router.route("/create-blog")
 router.route("/getblog/:id")
         .get(blogs.getBlogById)
 router.route("/update-blog/:id")
-        .put(isLoggedIn, upload.single("thumbnail")  , blogs.updateBlog ) 
+        .put(isLoggedIn, upload.single("thumbnail"), blogs.updateBlog ) 
 router.route("/getblogByCategory/:category")
         .get(blogs.getBlogByCategory)
 router.route("/delete-blog/:id")
@@ -28,3 +28,4 @@ router.route("/unlikeBlog/:id")
 router.route("/")
         .get(blogs.getRecentBlog)
 export default router
+

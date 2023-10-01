@@ -199,7 +199,7 @@ const updateUser = async (req, res, next) => {
                 user.avatar.public_id = result.public_id
                 user.avatar.secure_url  = result.secure_url
                 // Also we should remove file from local System in the upload folder 
-                fs.rm(`uploads/${req.file.filename}`)
+                // fs.rm(`uploads/${req.file.filename}`)
             } 
         }
         await user.save()  

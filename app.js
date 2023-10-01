@@ -11,8 +11,6 @@ const app = express()
 dotenv.config()
 app.use(morgan('dev'))
 app.use((req, res, next) => {
-    console.log(req.headers) 
-    console.log(req.cookies)
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Credentials', true);
@@ -22,7 +20,7 @@ app.use((req, res, next) => {
     
     next();
   });
-
+app.use(express.static("client"))
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
 app.use(urlencoded({

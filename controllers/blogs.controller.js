@@ -56,7 +56,7 @@ const createBlog =async (req, res ,next) => {
                     blog.thumbnail.secure_url = result.secure_url
 
                 }
-                fs.rm(`uploads/${req.file.filename}`)
+                // fs.rm(`uploads/${req.file.filename}`)
             }
             catch(e) { 
                 return next(new Apperror (e.message, 400))
