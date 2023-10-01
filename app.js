@@ -5,7 +5,7 @@ import connectToDB from './config/db.js'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
-
+import path from "path"
 import errorMiddleware from './middlewares/error.middleware.js'
 const app = express()
 dotenv.config()
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     next();
   });
 app.use(express.static("client"))
-app.set('views', path.join(__dirname, 'views'))
+
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
 app.use(urlencoded({
