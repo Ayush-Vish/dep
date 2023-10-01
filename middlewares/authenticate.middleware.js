@@ -3,6 +3,7 @@ import Apperror from "../utility/error.util.js"
     import JWT from "jsonwebtoken"
     const isLoggedIn = async (req , res, next) => { 
         console.log(req.headers)
+        // const {token } = req.cookies
         const token  = req.headers?.authentication?.split("=")[1]?.split(";")[0]
         console.log(req.headers?.authentication?.split("="))
         console.log(token)

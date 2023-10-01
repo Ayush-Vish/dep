@@ -13,7 +13,8 @@ const blogModel = new mongoose.Schema({
             type:String,
         },
         secure_url: {
-            type:String
+            type:String,
+            default:"https://blog.entheosweb.com/wp-content/uploads/2022/07/creative-youtube-thumbnail-and-cover-designs.jpg"
         }
     },
     author : {
