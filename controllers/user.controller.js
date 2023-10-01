@@ -6,6 +6,7 @@ import fs from "fs/promises"
 import cloudinary from "cloudinary"
 import sendEmail from "../utility/sendEmail.utility.js";
 import crypto from "crypto"
+import blogModel from "../models/blog.model.js";
 const cookieOptions =  {
     maxAge:7*24*60*60*100,
     httpOnly:false,
@@ -166,24 +167,26 @@ const updateUser = async (req, res, next) => {
     try {
         const {name, username , bio  } = req.body 
         const usernameExists  = await userModel.findOne({username})
-        if(!usernameExists) {
+        if(usernameExists) {
             return next(new Apperror("Username Already Exists Try Something new", 400 ) )
 
         }
         const id = req.user.id 
         const user = await userModel.findById(id) 
-
+        console.log("1234567u8654323456y54") 
         if(!user) {
             return next(new Apperror("user does not Exists", 400 ) )  
         }
-        user.name  = name 
-        user.username = username
-        user.bio = bio  
+        console.log("1234567u8654323456y54") 
+        user.name  = name || user.name
+        user.username = username || user.username
+        user.bio = bio  || user.bio
         await user.save( )
+        console.log("1234567u8654323456y54") 
         if(req.file) { 
             
             const result = await cloudinary.v2.uploader.upload(req.file.path , {
-                folder:'lms',
+                folder:'blogweb',
                 width:'250',
                 height:'250',
                 gravity:'face' ,
@@ -198,7 +201,8 @@ const updateUser = async (req, res, next) => {
                 // fs.rm(`uploads/${req.file.filename}`)
             } 
         }
-        await user.save()  
+        await user.save() 
+        console.log("1234567u8654323456y54") 
         return res.status(200).json( {  
             success : true , 
             message : "User Updated SuccessFully"  
@@ -328,6 +332,23 @@ const unfollowUser = async (req ,res , next) => {
         return next(new Apperror(e.message ,400 ))
     }
 }
+const getAuthorBlogs = async (req ,res, next ) => {
+    try {
+        const {id } = req.body 
+        console.log(req.body)
+        const blogs = await blogModel.find({author: id}) 
+        console.log(blogs)
+        if(blogs.length ==0)  {
+            return next(new Apperror("No Blogs Currently" ,400))
+        }
+        return res.status(200).json({
+            success: true , 
+            blogs
+        })
+    } catch (error) {
+        return next(new Apperror(error.message , 400 ))
+    }
+}
 
 export default{
     register,
@@ -339,5 +360,6 @@ export default{
     followUser, 
     unfollowUser,
     forgetPassword,
-    resetPassword
+    resetPassword,
+    getAuthorBlogs
 }

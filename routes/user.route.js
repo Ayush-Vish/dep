@@ -29,6 +29,8 @@ router.route("/followUser/:id")
         .post( isLoggedIn,  user.followUser)
 router.route("/unfollowUser/:id")
         .delete( isLoggedIn, user.unfollowUser)
+router.route("/authorBlogs")
+        .post(user.getAuthorBlogs)
 
         
 export default router 

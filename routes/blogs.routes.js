@@ -27,5 +27,6 @@ router.route("/unlikeBlog/:id")
         .delete( isLoggedIn,  blogs.unlikeBlog )
 router.route("/")
         .get(blogs.getRecentBlog)
+
 export default router
 

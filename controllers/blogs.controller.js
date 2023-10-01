@@ -109,7 +109,7 @@ const updateBlog =async (req, res ,next) => {
                 blog.thumbnail.secure_url = result.secure_url
 
             }
-            fs.rm(`uploads/${req.file.filename}`)
+            // fs.rm(`uploads/${req.file.filename}`)
 
         }    
         await blog.save() 
