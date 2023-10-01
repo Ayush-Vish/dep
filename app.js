@@ -5,12 +5,13 @@ import connectToDB from './config/db.js'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
-import path from "path"
+
 import errorMiddleware from './middlewares/error.middleware.js'
 const app = express()
 dotenv.config()
 app.use(morgan('dev'))
 app.use((req, res, next) => {
+  
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Credentials', true);
@@ -20,7 +21,6 @@ app.use((req, res, next) => {
     
     next();
   });
-// app.use(express.static("client"))
 
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
@@ -47,8 +47,8 @@ app.use(cors({
     origin:"http://127.0.0.1:5500"
 }))
 
-app.get('/', (req, res  ) => {
-    res.render("./client/index.js")
+app.use('/ping/', (req, res  ) => {
+    res.status(200).json({message : "Welccome to Blog webssoite"})
 
 }) 
 import userRoutes from './routes/user.route.js'
