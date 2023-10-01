@@ -20,7 +20,7 @@ app.use((req, res, next) => {
     
     next();
   });
-app.use(express.static("client"))
+// app.use(express.static("client"))
 
 app.use(express.json())
 // The encoded url we get it helps us to get the Query params or to parse the encoded  url 
