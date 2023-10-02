@@ -70,7 +70,7 @@ const getBlogById = async(req, res, next ) =>  {
     try {
         const id = req.params.id 
         
-        const blog= await blogModel.findById(  {id }) 
+        const blog= await blogModel.findOne(   {_id: id }) 
         if(!blog)   {
             return new Apperror("No Blogs Exist With This Id " ,400 )  
             
