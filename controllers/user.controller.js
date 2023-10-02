@@ -281,7 +281,7 @@ const followUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const userToFollowId = req.params.id;
-    const user = await userModel.findOne({_id : userId});
+    const user = await userModel.findOne({_id :userId});
     if (!user) {
       return next(new Apperror("User Does not Exists"));
     }

@@ -32,22 +32,54 @@
 
 ### Now sever is listening on a particular port 
 
-## User Routes localhost:3000/user
+## User Routes localhost:3000/api/v1/user
 
-POST -> /api/v1/register - to register a user 
+POST -> /register - to register a user 
 
-POST -> /api/v1/login - to login a user
 
-GET -> /api/v1/logout - to logout a user
+POST -> /login - to login a user
 
-GET -> /api/v1/me  - to get user details
 
-POST -> /api/v1/updateUser - to update user details
+GET -> /logout - to logout a user
 
-POST -> /api/v1/forgot-password - to send a token for reseting password 
 
-POST -> /api/v1/reset-password:resetPasswordToken - to reset  password 
+GET -> /me  - to get user details
 
+
+POST -> /updateUser - to update user details
+
+
+POST -> /forgot-password - to send a token for reseting password 
+
+
+POST -> /reset-password:resetPasswordToken - to reset  password 
+
+
+POST -> /authorBlogs  - to get blogs written by user 
+
+
+GET  -> /getFollowers  - to get followers of a user 
+
+
+## Blog routes localhost:3000/api/v1/blogs 
+
+
+GET  -> /getAllBlogs  - to get all blogs 
+
+
+POST -> /create-blog  - to create a blog 
+
+GET  -> /getblog/:id  - to get a blog by id 
+
+GET  -> /getblogByCategory/:category  - to get a blog by category 
+
+
+GET  -> /  - to get recent blogs 
+
+
+
+
+# Libraries and Dependencies used 
 
 
 
