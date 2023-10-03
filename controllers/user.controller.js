@@ -325,8 +325,10 @@ const unfollowUser = async (req, res, next) => {
 };
 const getAuthorBlogs = async (req, res, next) => {
   try {
-    const { id } = req.body;
-    console.log(req.body);
+    console.log(req.params)
+    const { id } = req.params;
+
+    console.log(id)
     const blogs = await blogModel.find({ author: id });
     console.log(blogs);
     if (blogs.length == 0) {
