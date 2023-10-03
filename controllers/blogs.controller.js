@@ -102,7 +102,8 @@ const updateBlog =async (req, res ,next) => {
         await blog.save() 
         if(req.file) { 
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
-                folder:  "Blog-Thumbnail"
+                folder:  "Blog-Thumbnail", 
+                gravity: "north_west", crop: "fill"
             })
             if(result)  { 
                 blog.thumbnail.public_id = result.public_id
