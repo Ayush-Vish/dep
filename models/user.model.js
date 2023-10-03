@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
         type:String, 
         require:[true, "Name is Required"],
         trim:true,
-        minLength:[5 , "Name must be greater than 5 characters"],
+        minLength:[1 , "Name must be greater than 1 characters"],
         lowercase:true
     },
     email:{
@@ -36,12 +36,12 @@ const UserSchema = new mongoose.Schema({
     username :{
         type: String,
         require : [true, "User name is Required"],
-        maxLength: [8,  "User name cannot be greater than 8 characters"],
+        maxLength: [20,  "User name cannot be greater than 8 characters"],
         unique: true
     },
     bio : {
         type: String, 
-        maxLength :[200, "Bio cannot be more than 100 characters"]
+        maxLength :[200, "Bio cannot be more than 200 characters"]
     }, 
     likedBlogs : [
         {

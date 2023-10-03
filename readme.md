@@ -71,7 +71,7 @@ POST -> /create-blog  - to create a blog
 
 GET  -> /getblog/:id  - to get a blog by id 
 
-GET  -> /getblogByCategory/:category  - to get a blog by category 
+GET  -> /getblogByCategory/:category  - to get a blog by category    
 
 
 GET  -> /  - to get recent blogs 
