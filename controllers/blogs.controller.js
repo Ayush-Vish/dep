@@ -32,7 +32,7 @@ const createBlog =async (req, res ,next) => {
             return next(new Apperror("Please Write Title And Description "))
         }
         const blog = await blogModel.create({
-            title, description, author : author.id , category 
+            title, description, author : author.id , category , authorObject : author
         })
         await blog.save() 
 
@@ -216,13 +216,19 @@ const removeComments = async (req, res, next) =>  {
 const likeBlog =async(req , res, next) => { 
     try {
         const userId= req.user.id 
-        const blogId= req.params.id 
+        const blogId= req.params.id
+        const blog  =await blogModel.findById(blogId) 
+        if( !blog ) { 
+            return next(new Apperror("blog Doe sNot Exists" ,400 )) 
+        } 
+        blog.likesCount ++ ; 
         const user = await userModel.findById(userId) 
-        user.likedBlogs.push({likedBlogId: blogId}) 
+        user.likedBlogs.push({likedBlogId: blogId})
+         await blog.save()
         await user.save( )
         return res.status(200).json({
             success :true, 
-            user
+            blog
         })
 
         
@@ -236,16 +242,23 @@ const unlikeBlog = async(req, res,next) => {
         const blogId= req.params.id 
         const user = await userModel.findById(userId)
         console.log(user.likedBlogs) 
-
+        const blog =await blogModel.findById(blogId) 
+        if(!blog) { 
+            return next(new Apperror("Blog DoesNot Exists", 400 )) 
+        }
         for (let i=0 ;i < user.likedBlogs.length ; i++ ) {
             if(user.likedBlogs[i].likedBlogId === blogId ) {
                 user.likedBlogs.splice(i,1) 
             }
         }
+        blog.likesCount -- ; 
+        await user.save() 
+        await blog.save( )
 
         return res.status(200).json({
             success : true ,
             message : "Blog Unliked Successfully ",
+            blog
 
 
         })

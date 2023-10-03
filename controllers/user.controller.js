@@ -281,11 +281,16 @@ const followUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const userToFollowId = req.params.id;
-    const user = await userModel.findOne({_id :userId});
+    const userToFollow = await userModel.findById(userToFollowId) 
+    if (!userToFollow)  { 
+      return next(new Apperror("User Which You Want ToFollow Does Not Exists " ,400 ))
+    }
+    const user = await userModel.findOne({ _id: userId });
     if (!user) {
       return next(new Apperror("User Does not Exists"));
     }
-    user.follows.push({ userId: userToFollowId });
+    console.log(userToFollow.name)
+    user.follows.push({ userId: userToFollowId , username :userToFollow.name , avatar : userToFollow.avatar  });
 
     await user.save();
     return res.status(200).json({
@@ -341,18 +346,19 @@ const getFollowers = async (req, res, next) => {
     const users = await userModel.find({
       follows: { $elemMatch: { userId: id } },
     });
-    if(users.length ==0 ) {
-        return next(new Apperror("No followers" , 400 ) )
+    if (users.length == 0) {
+      return next(new Apperror("No followers", 400));
     }
     return res.status(200).json({
-        success :true ,
-        users
-    })
+      success: true,
+      users,
+    });
   } catch (e) {
     return next(new Apperror(e.message, 400));
   }
 };
 
+// 
 export default {
   register,
   login,

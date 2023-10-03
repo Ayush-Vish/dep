@@ -55,15 +55,30 @@ const UserSchema = new mongoose.Schema({
             userId : {
                 type :String , 
                 trim : true 
+            }, 
+            username  :  {
+                 type : String ,
+            }, 
+            avatar : {
+                type : Object
             }
         }
     ],
+    blogs : [{
+
+        blog : {
+            type : mongoose.Schema.ObjectId , 
+            ref : "blogModel" 
+
+        }
+    }
+    ], 
     forgotpasswordtoken : {
         type : String
     },
     forgotpasswordexpirydate : {
         type: Date
-    }
+     } , 
 },{
     timestamps:true
 })
